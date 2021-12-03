@@ -14281,7 +14281,7 @@ definitions:
       site_admin:
         type: "string"
       permissions:
-        type: "string"
+        $ref: "#/definitions/ProjectMemberPermissionDetail"
     description: "添加仓库成员"
     example:
       gists_url: "gists_url"
@@ -16652,3 +16652,12 @@ definitions:
       testers: "testtesters"
       assignees_number: 0
       testers_number: 0
+  ProjectMemberPermissionDetail:
+    type: "object"
+    properties:
+      pull:
+        type: "boolean"
+      push:
+        type: "boolean"
+      admin:
+        type: "boolean"
