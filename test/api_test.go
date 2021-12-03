@@ -1,10 +1,11 @@
 package test
 
 import (
-	"gitee.com/openeuler/go-gitee/gitee"
 	"golang.org/x/net/context"
 	"golang.org/x/oauth2"
 	"testing"
+
+	"github.com/opensourceways/go-gitee/gitee"
 )
 
 const (
