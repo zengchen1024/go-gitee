@@ -1,5 +1,7 @@
 package gitee
 
+import "k8s.io/apimachinery/pkg/util/sets"
+
 func (ne *NoteEvent) GetAction() string {
 	if ne == nil || ne.Action == nil {
 		return ""
@@ -134,4 +136,56 @@ func (ne *NoteEvent) GetPassword() string {
 	}
 
 	return *ne.Password
+}
+
+func (ne *NoteEvent) IsIssue() bool {
+	return ne.GetNoteableType() == "Issue"
+}
+
+func (ne *NoteEvent) IsIssueClosed() bool {
+	return ne.GetIssue().GetState() == "closed"
+}
+
+func (ne *NoteEvent) IsIssueOpen() bool {
+	return ne.GetIssue().GetState() == "open"
+}
+
+func (ne *NoteEvent) GetIssueAuthor() string {
+	return ne.GetIssue().GetUser().GetLogin()
+}
+
+func (ne *NoteEvent) GetIssueNumber() string {
+	return ne.GetIssue().GetNumber()
+}
+
+func (ne *NoteEvent) GetIssueLabelSet() sets.String {
+	return ne.GetIssue().LabelsToSet()
+}
+
+func (ne *NoteEvent) IsPullRequest() bool {
+	return ne.GetNoteableType() == "PullRequest"
+}
+
+func (ne *NoteEvent) GetPRNumber() int32 {
+	return ne.GetPullRequest().GetNumber()
+}
+
+func (ne *NoteEvent) GetPRAuthor() string {
+	return ne.GetPullRequest().GetUser().GetLogin()
+}
+
+func (ne *NoteEvent) IsPROpen() bool {
+	return ne.GetPullRequest().GetState() == "open"
+}
+
+func (ne *NoteEvent) GetPRBaseRef() string {
+	return ne.GetPullRequest().GetBase().GetRef()
+}
+
+func (ne *NoteEvent) GetPRHeadSha() string {
+	return ne.GetPullRequest().GetHead().GetSha()
+}
+
+func (ne *NoteEvent) GetPRLabelSets() sets.String {
+	return ne.GetPullRequest().LabelsToSet()
 }

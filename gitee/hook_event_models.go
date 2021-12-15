@@ -35,7 +35,6 @@ type UserHook struct {
 	Id        int32     `json:"id,omitempty"`
 	Name      string    `json:"name,omitempty"`
 	Email     string    `json:"email,omitempty"`
-	Username  string    `json:"username,omitempty"`
 	UserName  string    `json:"user_name,omitempty"`
 	Url       string    `json:"url,omitempty"`
 	Login     string    `json:"login,omitempty"`
@@ -65,7 +64,7 @@ type CommitHook struct {
 
 // MilestoneHook : 里程碑信息
 type MilestoneHook struct {
-	Id           int32    `json:"id,omitempty"`
+	Id           int32     `json:"id,omitempty"`
 	HtmlUrl      string    `json:"html_url,omitempty"`
 	Number       int32     `json:"number,omitempty"`
 	Title        string    `json:"title,omitempty"`

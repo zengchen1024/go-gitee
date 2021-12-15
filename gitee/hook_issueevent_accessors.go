@@ -1,5 +1,7 @@
 package gitee
 
+import "k8s.io/apimachinery/pkg/util/sets"
+
 func (ie *IssueEvent) GetAction() string {
 	if ie == nil || ie.Action == nil {
 		return ""
@@ -72,6 +74,14 @@ func (ie *IssueEvent) GetUpdatedBy() *UserHook {
 	return ie.UpdatedBy
 }
 
+func (ie *IssueEvent) GetIID() string {
+	if ie == nil {
+		return ""
+	}
+
+	return ie.IID
+}
+
 func (ie *IssueEvent) GetTitle() string {
 	if ie == nil || ie.Title == nil {
 		return ""
@@ -134,4 +144,20 @@ func (ie *IssueEvent) GetPassword() string {
 	}
 
 	return *ie.Password
+}
+
+func (ie *IssueEvent) GetOrgRepo() (string, string) {
+	return ie.GetRepository().GetOwnerAndRepo()
+}
+
+func (ie *IssueEvent) GetIssueAuthor() string {
+	return ie.GetIssue().GetUser().GetLogin()
+}
+
+func (ie *IssueEvent) GetIssueNumber() string {
+	return ie.GetIssue().GetNumber()
+}
+
+func (ie *IssueEvent) GetIssueLabelSet() sets.String {
+	return ie.GetIssue().LabelsToSet()
 }

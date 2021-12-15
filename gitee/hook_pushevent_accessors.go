@@ -1,6 +1,6 @@
 package gitee
 
-func (pe *PushEvent) GetAction() string {
+func (pe *PushEvent) GetRef() string {
 	if pe == nil || pe.Ref == nil {
 		return ""
 	}
@@ -56,6 +56,14 @@ func (pe *PushEvent) GetCompare() string {
 	return *pe.Compare
 }
 
+func (pe *PushEvent) getCommits() []CommitHook {
+	if pe == nil {
+		return nil
+	}
+
+	return pe.Commits
+}
+
 func (pe *PushEvent) GetHeadCommit() *CommitHook {
 	if pe == nil {
 		return nil
@@ -78,6 +86,14 @@ func (pe *PushEvent) GetProject() *ProjectHook {
 	}
 
 	return pe.Project
+}
+
+func (pe *PushEvent) GetUserID() int64 {
+	if pe == nil {
+		return 0
+	}
+
+	return pe.UserID
 }
 
 func (pe *PushEvent) GetUserName() string {
