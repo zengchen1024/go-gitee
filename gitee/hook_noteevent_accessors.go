@@ -138,6 +138,18 @@ func (ne *NoteEvent) GetPassword() string {
 	return *ne.Password
 }
 
+func (ne *NoteEvent) GetOrgRepo() (string, string) {
+	return ne.GetRepository().GetOwnerAndRepo()
+}
+
+func (ne *NoteEvent) IsCreatingCommentEvent() bool {
+	return ne.GetAction() == "comment"
+}
+
+func (ne *NoteEvent) GetCommenter() string {
+	return ne.GetComment().GetUser().GetLogin()
+}
+
 func (ne *NoteEvent) IsIssue() bool {
 	return ne.GetNoteableType() == "Issue"
 }

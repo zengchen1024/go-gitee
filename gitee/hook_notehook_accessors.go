@@ -16,6 +16,14 @@ func (nh *NoteHook) GetID() int32 {
 	return nh.Id
 }
 
+func (nh *NoteHook) GetUser() *UserHook {
+	if nh == nil {
+		return nil
+	}
+
+	return nh.User
+}
+
 func (nh *NoteHook) GetCreateAt() string {
 	if nh == nil {
 		return ""

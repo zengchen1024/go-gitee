@@ -23,7 +23,7 @@ update_repo(){
         go mod tidy
     fi
 
-    $bazel run //:gazelle -- update-repos -from_file=go.mod
+    $bazel run //:gazelle -- update-repos -from_file=go.mod -prune
 
     $bazel run //:gazelle
 }
