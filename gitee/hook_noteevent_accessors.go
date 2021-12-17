@@ -2,6 +2,14 @@ package gitee
 
 import "k8s.io/apimachinery/pkg/util/sets"
 
+const (
+	//StatusOpen gitee issue or pr status is open
+	StatusOpen = "open"
+
+	//StatusClosed gitee issue or pr status is closed
+	StatusClosed = "closed"
+)
+
 func (ne *NoteEvent) GetAction() string {
 	if ne == nil || ne.Action == nil {
 		return ""
@@ -155,11 +163,11 @@ func (ne *NoteEvent) IsIssue() bool {
 }
 
 func (ne *NoteEvent) IsIssueClosed() bool {
-	return ne.GetIssue().GetState() == "closed"
+	return ne.GetIssue().GetState() == StatusClosed
 }
 
 func (ne *NoteEvent) IsIssueOpen() bool {
-	return ne.GetIssue().GetState() == "open"
+	return ne.GetIssue().GetState() == StatusOpen
 }
 
 func (ne *NoteEvent) GetIssueAuthor() string {
@@ -187,7 +195,7 @@ func (ne *NoteEvent) GetPRAuthor() string {
 }
 
 func (ne *NoteEvent) IsPROpen() bool {
-	return ne.GetPullRequest().GetState() == "open"
+	return ne.GetPullRequest().GetState() == StatusOpen
 }
 
 func (ne *NoteEvent) GetPRBaseRef() string {

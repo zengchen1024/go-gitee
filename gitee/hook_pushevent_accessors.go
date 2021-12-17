@@ -151,3 +151,7 @@ func (pe *PushEvent) GetPassword() string {
 
 	return *pe.Password
 }
+
+func (pe *PushEvent) GetOrgRepo() (string, string) {
+	return pe.GetRepository().GetOwnerAndRepo()
+}
