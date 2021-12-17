@@ -20,6 +20,7 @@ go_library(
         "api_webhooks.go",
         "client.go",
         "configuration.go",
+        "converter.go",
         "hook_branchhook_accessors.go",
         "hook_commithook_accessors.go",
         "hook_enterprisehook_accessors.go",
