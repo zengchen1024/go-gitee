@@ -198,6 +198,6 @@ func (ne *NoteEvent) GetPRHeadSha() string {
 	return ne.GetPullRequest().GetHead().GetSha()
 }
 
-func (ne *NoteEvent) GetPRLabelSets() sets.String {
+func (ne *NoteEvent) GetPRLabelSet() sets.String {
 	return ne.GetPullRequest().LabelsToSet()
 }
