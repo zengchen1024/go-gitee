@@ -3,6 +3,13 @@ package gitee
 import "strings"
 
 const (
+	EventTypeNote  = "Note Hook"
+	EventTypePush  = "Push Hook"
+	EventTypeIssue = "Issue Hook"
+	EventTypePR    = "Merge Request Hook"
+
+	ActionOpen = "open"
+
 	PRActionOpened              = "opened"
 	PRActionClosed              = "closed"
 	PRActionUpdatedLabel        = "update_label"
