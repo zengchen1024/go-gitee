@@ -15,6 +15,7 @@ const (
 	PRActionUpdatedLabel        = "update_label"
 	PRActionChangedTargetBranch = "target_branch_changed"
 	PRActionChangedSourceBranch = "source_branch_changed"
+	PRActionLinkIssue           = "update_link_issue"
 )
 
 func GetPullRequestAction(e *PullRequestEvent) string {
@@ -32,6 +33,9 @@ func GetPullRequestAction(e *PullRequestEvent) string {
 
 		case PRActionUpdatedLabel:
 			return PRActionUpdatedLabel
+
+		case PRActionLinkIssue:
+			return PRActionLinkIssue
 		}
 
 	case "close":
