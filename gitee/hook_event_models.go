@@ -184,4 +184,6 @@ type PullRequestHook struct {
 	Additions          int32          `json:"additions,omitempty"`
 	Deletions          int32          `json:"deletions,omitempty"`
 	ChangedFiles       int32          `json:"changed_files,omitempty"`
+	Issues             []Issue        `json:"issues,omitempty"`
+	StaleIssues        []Issue        `json:"stale_issues,omitempty"`
 }

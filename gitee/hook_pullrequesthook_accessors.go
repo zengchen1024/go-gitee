@@ -274,6 +274,22 @@ func (ph *PullRequestHook) GetChangedFiles() int32 {
 	return ph.ChangedFiles
 }
 
+func (ph *PullRequestHook) GetIssues() []Issue {
+	if ph == nil {
+		return nil
+	}
+
+	return ph.Issues
+}
+
+func (ph *PullRequestHook) GetStaleIssues() []Issue {
+	if ph == nil {
+		return nil
+	}
+
+	return ph.StaleIssues
+}
+
 func (ph *PullRequestHook) LabelsToSet() sets.String {
 	res := sets.NewString()
 
