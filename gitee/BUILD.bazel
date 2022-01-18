@@ -84,6 +84,7 @@ go_library(
         "model_program_basic.go",
         "model_project.go",
         "model_project_basic.go",
+        "model_project_label.go",
         "model_project_member.go",
         "model_project_member_permission.go",
         "model_project_member_permission_detail.go",

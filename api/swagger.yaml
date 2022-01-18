@@ -1567,6 +1567,84 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/OperateLog"
+  /v5/repos/{owner}/{repo}/project_labels:
+    post:
+      tags:
+      - "Labels"
+      summary: "添加仓库标签"
+      description: "添加仓库标签"
+      operationId: "postV5ReposOwnerRepoProjectLabels"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "owner"
+        in: "path"
+        description: "仓库所属空间地址(企业、组织或个人的地址path)"
+        required: true
+        type: "string"
+        x-exportParamName: "Owner"
+      - name: "repo"
+        in: "path"
+        description: "仓库路径(path)"
+        required: true
+        type: "string"
+        x-exportParamName: "Repo"
+      - in: "body"
+        name: "body"
+        description: "必选，标签的内容"
+        required: true
+        schema:
+          $ref: "#/definitions/PullRequestLabelPostParam"
+        x-exportParamName: "Body"
+      responses:
+        201:
+          description: "返回格式"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ProjectLabel"
+    put:
+      tags:
+      - "Labels"
+      summary: "替换所有仓库标签"
+      description: "替换所有仓库标签\n 需要在请求的body里填上数组，元素为标签的名字。如: [\"feat\", \"\
+        bug\"]"
+      operationId: "putV5ReposOwnerRepoProjectLabels"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "owner"
+        in: "path"
+        description: "仓库所属空间地址(企业、组织或个人的地址path)"
+        required: true
+        type: "string"
+        x-exportParamName: "Owner"
+      - name: "repo"
+        in: "path"
+        description: "仓库路径(path)"
+        required: true
+        type: "string"
+        x-exportParamName: "Repo"
+      - in: "body"
+        name: "body"
+        description: "必选，标签的内容"
+        required: true
+        schema:
+          $ref: "#/definitions/PullRequestLabelPostParam"
+        x-exportParamName: "Body"
+      responses:
+        200:
+          description: "返回格式"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ProjectLabel"
   /v5/repos/{owner}/{repo}/labels:
     get:
       tags:
@@ -14242,6 +14320,21 @@ definitions:
     example:
       name: "name"
       commit: "commit"
+  ProjectLabel:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+      name:
+        type: "string"
+      ident:
+        type: "string"
+    description: "创建仓库标签"
+    example:
+      id: 0
+      name: "name"
+      ident: "ident"
   ProjectMember:
     type: "object"
     properties:
