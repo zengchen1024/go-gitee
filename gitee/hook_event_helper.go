@@ -8,10 +8,14 @@ const (
 	EventTypeIssue = "Issue Hook"
 	EventTypePR    = "Merge Request Hook"
 
-	ActionOpen = "open"
+	StatusOpen   = "open"   //StatusOpen gitee issue or pr status is open
+	StatusClosed = "closed" //StatusClosed gitee issue or pr status is closed
+	StatusMerged = "merged"
 
-	PRActionOpened              = "opened"
-	PRActionClosed              = "closed"
+	ActionOpen  = "open"
+	ActionClose = "close"
+
+	PRActionMerge               = "merge"
 	PRActionUpdatedLabel        = "update_label"
 	PRActionChangedTargetBranch = "target_branch_changed"
 	PRActionChangedSourceBranch = "source_branch_changed"
@@ -20,8 +24,8 @@ const (
 
 func GetPullRequestAction(e *PullRequestEvent) string {
 	switch strings.ToLower(e.GetAction()) {
-	case "open":
-		return PRActionOpened
+	case ActionOpen:
+		return ActionOpen
 
 	case "update":
 		switch strings.ToLower(e.GetActionDesc()) {
@@ -38,8 +42,11 @@ func GetPullRequestAction(e *PullRequestEvent) string {
 			return PRActionLinkIssue
 		}
 
-	case "close":
-		return PRActionClosed
+	case PRActionMerge:
+		return PRActionMerge
+
+	case ActionClose:
+		return ActionClose
 	}
 
 	return ""

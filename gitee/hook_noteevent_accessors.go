@@ -2,14 +2,6 @@ package gitee
 
 import "k8s.io/apimachinery/pkg/util/sets"
 
-const (
-	//StatusOpen gitee issue or pr status is open
-	StatusOpen = "open"
-
-	//StatusClosed gitee issue or pr status is closed
-	StatusClosed = "closed"
-)
-
 func (ne *NoteEvent) GetAction() string {
 	if ne == nil || ne.Action == nil {
 		return ""
